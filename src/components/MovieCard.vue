@@ -20,7 +20,7 @@
       </div>
 
       <div class="movie-img">
-          img
+        <img :src="`https://image.tmdb.org/t/p/w342/${detailes.poster_path}`" :alt="detailes.original_title">
       </div>
   </div>
 </template>
@@ -40,11 +40,12 @@ export default {
 .movie{
     color: whitesmoke;
     margin-bottom: 20px;
+    height: 400px;
 
     .movie-text{
         background-color: $secondary_color;
         border: 1px solid whitesmoke;
-        min-height: 400px;
+        height: 100%;
         padding: 40px 10px;
         display: none;
          
@@ -56,8 +57,7 @@ export default {
 
     .movie-img{
         border: 1px solid whitesmoke;
-        min-height: 400px;
-        padding: 40px 10px;
+        height: 100%;
     }
 
     &:hover .movie-img{
