@@ -2,19 +2,21 @@
   <main>
       <div class="container">
           <div class="row row-cols-2 row-cols-lg-4">
-              <div class="card">
-                  
-              </div>
+            <MovieCard />
           </div>
       </div>
   </main>
 </template>
 
 <script>
+import MovieCard from "./MovieCard";
+
 export default {
     name: 'Main',
-
-}
+    components: {
+        MovieCard,
+    },
+};
 </script>
 
 <style scoped lang="scss">
@@ -24,6 +26,11 @@ main{
     width: 100%;
     height: calc(100vh - 100px);
     background-color: $primary_color;
+    overflow-y: auto;
+
+    .row{
+        margin-top: 20px;
+    }
 }
 
 </style>

@@ -1,27 +1,21 @@
 <template>
   <div id="app">
     <Header />
-    
-    <main>
-      <div class="container">
-          <div class="row row-cols-2 row-cols-lg-4">
-              <div class="card">
-                  
-              </div>
-          </div>
-      </div>
-  </main>
+
+    <Main />
+
   </div>
 </template>
 
 <script>
 import Header from "./components/Header.vue";
-
+import Main from "./components/Main.vue";
 
 export default {
   name: "App",
   components: {
     Header,
+    Main
     
   },
 };
@@ -31,11 +25,5 @@ export default {
 @import './style/general.scss';
 @import './style/variables.scss';
 
-#app {
-  main{
-    width: 100%;
-    height: calc(100vh - 100px);
-    background-color: $primary_color;
-  }
-}
+
 </style>
