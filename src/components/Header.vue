@@ -3,7 +3,7 @@
       <div class="container">
         <div class="input-wrapper">
             <input v-model="searchMovie" type="text" placeholder="Search title here">
-            <button @click="$emite('searchClicked', serachMovie)" class="btn btn-primary">Search</button>
+            <button @click="$emit('searchClicked', searchMovie)" class="btn btn-primary">Search</button>
         </div>
       </div>
   </header>

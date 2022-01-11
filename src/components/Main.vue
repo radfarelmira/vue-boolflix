@@ -2,7 +2,7 @@
   <main>
       <div class="container">
           <div class="row row-cols-2 row-cols-lg-4">
-            <MovieCard />
+            <MovieCard v-for="(movie, index) in moviesList" :key="index" :detailes="movie"/>
           </div>
       </div>
   </main>
@@ -13,10 +13,13 @@ import MovieCard from "./MovieCard";
 
 export default {
     name: 'Main',
+    props:{
+        moviesList: Array
+    },
     components: {
         MovieCard,
-    },
-};
+    }
+}
 </script>
 
 <style scoped lang="scss">
