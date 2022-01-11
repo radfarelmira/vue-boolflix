@@ -2,8 +2,8 @@
   <header>
       <div class="container">
         <div class="input-wrapper">
-            <input type="text" placeholder="Search title here">
-            <button class="btn btn-primary">Search</button>
+            <input v-model="searchMovie" type="text" placeholder="Search title here">
+            <button @click="$emite('searchClicked', serachMovie)" class="btn btn-primary">Search</button>
         </div>
       </div>
   </header>
@@ -12,6 +12,11 @@
 <script>
 export default {
     name: 'Header',
+    data: function (){
+        return {
+            searchMovie: ''
+        };    
+    },
 };
 </script>
 
