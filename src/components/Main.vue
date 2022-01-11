@@ -1,8 +1,5 @@
 <template>
-  <div id="app">
-    <Header />
-    
-    <main>
+  <main>
       <div class="container">
           <div class="row row-cols-2 row-cols-lg-4">
               <div class="card">
@@ -11,31 +8,22 @@
           </div>
       </div>
   </main>
-  </div>
 </template>
 
 <script>
-import Header from "./components/Header.vue";
-
-
 export default {
-  name: "App",
-  components: {
-    Header,
-    
-  },
-};
+    name: 'Main',
+
+}
 </script>
 
-<style lang="scss">
-@import './style/general.scss';
-@import './style/variables.scss';
+<style scoped lang="scss">
+@import '../style/variables.scss';
 
-#app {
-  main{
+main{
     width: 100%;
     height: calc(100vh - 100px);
     background-color: $primary_color;
-  }
 }
+
 </style>
