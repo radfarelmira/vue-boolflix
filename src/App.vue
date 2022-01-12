@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header @searchClicked="search"/>
-    <Main :moviesList="moviesArray" :tvShowsList="tvShowArray" :isLoadingApi="isLoading"/>
+    <Main :moviesList="moviesArray" :tvShowsList="tvShowArray" :isLoadingApi="isLoading" :userSearchText="queryValue"/>
   </div>
 </template>
 

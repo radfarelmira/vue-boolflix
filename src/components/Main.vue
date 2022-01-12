@@ -1,21 +1,31 @@
 <template>
   <main>
       <div class="container">
-        <h1 :class="[moviesList.length > 0 && tvShowsList.length > 0? 'disactive' : 'active']">
+        <h1 :class="[userSearchText.length > 0? 'disactive' : 'active']">
             Boolflix
         </h1>
         
-        <div :class="[moviesList.length > 0 && tvShowsList.length > 0? 'active' : 'disactive']">
+        <div :class="[userSearchText.length > 0? 'active' : 'disactive']">
             <h2>Movies</h2>
             <div class="row row-cols-2 row-cols-lg-4">
-                <MovieCard v-for="(movie, index) in moviesList" :key="index" :details="movie"/>
+                <template v-if="moviesList.length > 0">
+                    <MovieCard v-for="(movie, index) in moviesList" :key="index" :details="movie"/>
+                </template>
+                <template v-else>
+                    Nessun risultato corrispondente alla ricerca, prova con una nuova ricerca
+                </template>
             </div>
             
             <h2>Tv shows</h2>
             <div class="row row-cols-2 row-cols-lg-4">
-                <MovieCard v-for="(show, index) in tvShowsList" :key="index" :details="show"/>
+                <template v-if="tvShowsList.length > 0">
+                    <MovieCard v-for="(show, index) in tvShowsList" :key="index" :details="show"/>
+                </template>
+                <template v-else>
+                    Nessun risultato corrispondente alla ricerca, prova con una nuova ricerca
+                </template>
             </div>
-            </div>
+        </div>
       </div>
   </main>
 </template>
@@ -28,6 +38,7 @@ export default {
     props:{
         moviesList: Array,
         tvShowsList: Array,
+        userSearchText: String
     },
     components: {
         MovieCard,

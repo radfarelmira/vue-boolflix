@@ -56,8 +56,10 @@ export default {
     color: whitesmoke;
     margin-bottom: 20px;
     min-height: 400px;
+    min-width: 200px;
 
     .movie-text{
+        width: 100%;
         background-color: $secondary_color;
         border: 1px solid whitesmoke;
         height: 100%;
