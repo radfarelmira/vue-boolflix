@@ -3,12 +3,12 @@
       <div class="container">
           <h2>MOVIES</h2>
           <div class="row row-cols-2 row-cols-lg-4">
-            <MovieCard v-for="(movie, index) in moviesList" :key="index" :detailes="movie"/>
+            <MovieCard v-for="(movie, index) in moviesList" :key="index" :details="movie"/>
           </div>
 
+          <h2>TV SHOWS</h2>
           <div class="row row-cols-2 row-cols-lg-4">
-            <h2>TV SHOWS</h2>
-            <MovieCard v-for="(show, index) in tvShowsList" :key="index"/>
+            <MovieCard v-for="(show, index) in tvShowsList" :key="index" :details="show"/>
           </div>
           
       </div>
@@ -39,8 +39,14 @@ main{
     background-color: $primary_color;
     overflow-y: auto;
 
-    .row{
+    h2{
+        font-weight: bold;
+        color: whitesmoke;
+        margin-top: 10px;
+
+        .row{
         margin-top: 20px;
+    }
     }
 }
 

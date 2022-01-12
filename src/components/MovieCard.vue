@@ -3,25 +3,25 @@
       <div class="movie-text">
         <div class="title">
             <span class="text-bold">Titolo:</span>
-            {{detailes.title}}
+            {{details.title? details.title: details.name}}
         </div>
         <div class="original_title">
             <span class="text-bold">Titolo Originale:</span>
-            {{detailes.original_title}}
+            {{details.original_title? details.original_title: details.orginale_name}}
         </div>
         <div class="language">
             <span class="text-bold">lingua:</span>
-            {{detailes.original_language}}
-            <img :src="require(`../assets/${detailes.original_language}.png`)" :alt="detailes.original_language">   
+            {{details.original_language}}
+            <img :src="require(`../assets/${details.original_language}.png`)" :alt="details.original_language">   
         </div>
         <div class="vote">
             <span class="text-bold">Voto:</span>
-            {{detailes.vote_average}}
+            {{details.vote_average}}
         </div>
       </div>
 
       <div class="movie-img">
-        <img :src="`https://image.tmdb.org/t/p/w342/${detailes.poster_path}`" :alt="detailes.original_title">
+        <img :src="`https://image.tmdb.org/t/p/w342/${details.poster_path}`" :alt="details.original_title? details.original_title: details.orginale_name">
       </div>
   </div>
 </template>
@@ -30,7 +30,7 @@
 export default {
     name: 'MovieCard',
     props: {
-        detailes: Object
+        details: Object,
     }
 }
 </script>
