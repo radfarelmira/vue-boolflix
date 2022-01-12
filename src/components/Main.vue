@@ -1,9 +1,16 @@
 <template>
   <main>
       <div class="container">
+          <h2>MOVIES</h2>
           <div class="row row-cols-2 row-cols-lg-4">
             <MovieCard v-for="(movie, index) in moviesList" :key="index" :detailes="movie"/>
           </div>
+
+          <div class="row row-cols-2 row-cols-lg-4">
+            <h2>TV SHOWS</h2>
+            <MovieCard v-for="(show, index) in tvShowsList" :key="index"/>
+          </div>
+          
       </div>
   </main>
 </template>
@@ -14,7 +21,8 @@ import MovieCard from "./MovieCard";
 export default {
     name: 'Main',
     props:{
-        moviesList: Array
+        moviesList: Array,
+        tvShowsList: Array
     },
     components: {
         MovieCard,
