@@ -1,16 +1,25 @@
 <template>
   <main>
       <div class="container">
-          <h2>MOVIES</h2>
-          <div class="row row-cols-2 row-cols-lg-4">
-            <MovieCard v-for="(movie, index) in moviesList" :key="index" :details="movie"/>
-          </div>
-
-          <h2>TV SHOWS</h2>
-          <div class="row row-cols-2 row-cols-lg-4">
-            <MovieCard v-for="(show, index) in tvShowsList" :key="index" :details="show"/>
-          </div>
+        <h2>MOVIES</h2>
+            <template v-if="moviesList.length > 0">
+                <div class="row row-cols-2 row-cols-lg-4">
+                    <MovieCard v-for="(movie, index) in moviesList" :key="index" :details="movie"/>
+                </div>
+            </template>
+            <template v-else>
+                No results, please try a new search
+            </template>
           
+        <h2>TV SHOWS</h2>
+        <template v-if="tvShowsList.length > 0">
+            <div class="row row-cols-2 row-cols-lg-4">
+                <MovieCard v-for="(show, index) in tvShowsList" :key="index" :details="show"/>
+            </div>
+        </template>
+        <template v-else>
+            No results, please try a new search
+        </template>
       </div>
   </main>
 </template>
@@ -38,6 +47,7 @@ main{
     height: calc(100vh - 100px);
     background-color: $primary_color;
     overflow-y: auto;
+    color: rgb(139, 136, 136);
 
     h2{
         font-weight: bold;

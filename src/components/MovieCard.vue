@@ -16,7 +16,8 @@
         </div>
         <div class="vote">
             <span class="text-bold">Voto:</span>
-            {{details.vote_average}}
+            {{calcVoteRating()}}
+            
         </div>
       </div>
 
@@ -31,6 +32,16 @@ export default {
     name: 'MovieCard',
     props: {
         details: Object,
+    },
+    data: function (){
+        return {
+            voteRating: '',
+        };
+    },
+    methods: {
+        calcVoteRating: function (){
+        return  this.voteRating = Math.round(this.details.vote_average / 2)
+        }
     }
 }
 </script>
