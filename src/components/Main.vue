@@ -1,14 +1,20 @@
 <template>
   <main>
       <div class="container">
-        <h2>Movies</h2>
+        <h1 :class="[moviesList.length > 0 && tvShowsList.length > 0? 'disactive' : 'active']">
+            Boolflix
+        </h1>
+        
+        <div :class="[moviesList.length > 0 && tvShowsList.length > 0? 'active' : 'disactive']">
+            <h2>Movies</h2>
             <div class="row row-cols-2 row-cols-lg-4">
                 <MovieCard v-for="(movie, index) in moviesList" :key="index" :details="movie"/>
             </div>
             
-        <h2>Tv shows</h2>
+            <h2>Tv shows</h2>
             <div class="row row-cols-2 row-cols-lg-4">
                 <MovieCard v-for="(show, index) in tvShowsList" :key="index" :details="show"/>
+            </div>
             </div>
       </div>
   </main>
@@ -39,6 +45,14 @@ main{
     overflow-y: auto;
     color: rgb(139, 136, 136);
 
+    h1{
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 100px;
+        margin-top: 200px;
+        color: #535353;
+    }
+
     h2{
         font-weight: bold;
         color: whitesmoke;
@@ -47,8 +61,9 @@ main{
 
         .row{
         margin-top: 20px;
+        }
     }
-    }
+
 }
 
 </style>
