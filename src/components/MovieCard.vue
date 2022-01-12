@@ -12,6 +12,7 @@
         <div class="language">
             <span class="text-bold">lingua:</span>
             {{detailes.original_language}}
+            <img :src="require(`../assets/${detailes.original_language}.png`)" :alt="detailes.original_language">   
         </div>
         <div class="vote">
             <span class="text-bold">Voto:</span>
@@ -48,6 +49,13 @@ export default {
         height: 100%;
         padding: 40px 10px;
         display: none;
+
+        .language{
+
+            img{
+                width: 20px;
+            }
+        }
          
     }
 
