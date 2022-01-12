@@ -1,9 +1,12 @@
 <template>
   <header>
-      <div class="container">
-        <div class="input-wrapper">
-            <input v-model="userSearchText" type="text" placeholder="Search title here">
-            <button @click="$emit('searchClicked', userSearchText)" class="btn btn-primary">Search</button>
+      <div class="container">  
+        <div class="header-wrapper">
+            <h2>Boolflix</h2>
+            <div class="header-search">
+                <input v-model="userSearchText" type="text" placeholder="Search title here">
+                <button @click="$emit('searchClicked', userSearchText)" class="btn btn-primary">Search</button>
+            </div>   
         </div>
       </div>
   </header>
@@ -31,11 +34,17 @@ header{
     .container{
         height: 100%;
 
-        .input-wrapper{
+        .header-wrapper{
             display: flex;
-            justify-content: flex-end;
+            justify-content: space-between;
             align-items: center;
-            height: 100%; 
+            height: 100%;
+            
+            h2{
+                color: red;
+                font-size: 40px;
+                text-transform: uppercase;
+            }
 
             input{
                 width: 300px;

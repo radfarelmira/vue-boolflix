@@ -1,25 +1,15 @@
 <template>
   <main>
       <div class="container">
-        <h2>MOVIES</h2>
-            <template v-if="moviesList.length > 0">
-                <div class="row row-cols-2 row-cols-lg-4">
-                    <MovieCard v-for="(movie, index) in moviesList" :key="index" :details="movie"/>
-                </div>
-            </template>
-            <template v-else>
-                No results, please try a new search
-            </template>
-          
-        <h2>TV SHOWS</h2>
-        <template v-if="tvShowsList.length > 0">
+        <h2>Movies</h2>
+            <div class="row row-cols-2 row-cols-lg-4">
+                <MovieCard v-for="(movie, index) in moviesList" :key="index" :details="movie"/>
+            </div>
+            
+        <h2>Tv shows</h2>
             <div class="row row-cols-2 row-cols-lg-4">
                 <MovieCard v-for="(show, index) in tvShowsList" :key="index" :details="show"/>
             </div>
-        </template>
-        <template v-else>
-            No results, please try a new search
-        </template>
       </div>
   </main>
 </template>
@@ -31,7 +21,7 @@ export default {
     name: 'Main',
     props:{
         moviesList: Array,
-        tvShowsList: Array
+        tvShowsList: Array,
     },
     components: {
         MovieCard,
@@ -53,6 +43,7 @@ main{
         font-weight: bold;
         color: whitesmoke;
         margin-top: 10px;
+        text-transform: uppercase;
 
         .row{
         margin-top: 20px;

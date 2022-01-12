@@ -55,7 +55,7 @@ export default {
 .movie{
     color: whitesmoke;
     margin-bottom: 20px;
-    height: 400px;
+    min-height: 400px;
 
     .movie-text{
         background-color: $secondary_color;

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header @searchClicked="search"/>
-    <Main :moviesList="moviesArray" :tvShowsList="tvShowArray"/>
+    <Main :moviesList="moviesArray" :tvShowsList="tvShowArray" :isLoadingApi="isLoading"/>
   </div>
 </template>
 
@@ -50,7 +50,6 @@ export default {
       })
       .then((response) => {
         this.tvShowArray = response.data.results;
-        console.log(this.tvShowArray)
       });
     }
   },
