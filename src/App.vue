@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <Header @searchClicked="callApi"/>
-    <Main :moviesList="movies"/>
+    <Header @searchClicked="search"/>
+    <Main :moviesList="moviesArray"/>
   </div>
 </template>
 
@@ -18,22 +18,25 @@ export default {
   },
   data: function (){
     return {
-      searchedMovie:'',
-      movies: [],
+      queryValue:'',
+      apiKey: 'dc389c48e11b10c26a06091250059cac',
+      moviesArray: [],
     };
   },
   methods: {
-    callApi: function (text){
-      this.searchedMovie = text;
-
+    search: function (text){
+      this.queryValue = text;
+      this.getMovies()
+    },
+    getMovies: function (){
       axios.get('https://api.themoviedb.org/3/search/movie', {
         params: {
-          api_key: 'dc389c48e11b10c26a06091250059cac',
-          query: this.searchedMovie
+          api_key: this.apiKey,
+          query: this.queryValue
         }
       })
       .then((response) => {
-        this.movies = response.data.results;
+        this.moviesArray = response.data.results;
       });
     }
   },
@@ -43,6 +46,7 @@ export default {
 <style lang="scss">
 @import './style/general.scss';
 @import './style/variables.scss';
+
 
 
 </style>
