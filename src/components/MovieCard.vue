@@ -17,6 +17,8 @@
         <div class="vote">
             <span class="text-bold">Voto:</span>
             {{calcVoteRating()}}
+            <i v-for="n in calcVoteRating()" :key="n" id="star-rating" class="fas fa-star"></i>
+            <i v-for="n in (starRatingMax - calcVoteRating())" :key="n" id="star-default" class="far fa-star"></i>
             
         </div>
       </div>
@@ -36,6 +38,7 @@ export default {
     data: function (){
         return {
             voteRating: '',
+            starRatingMax: 5,
         };
     },
     methods: {
@@ -68,6 +71,12 @@ export default {
             }
         }
          
+        .vote{
+
+            #star-rating{
+                color: yellow;
+            }
+        }
     }
 
     &:hover .movie-text{
