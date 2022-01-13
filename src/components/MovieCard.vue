@@ -26,6 +26,10 @@
                 <i v-for="n in (starRatingMax - calcVoteRating())" :key="n" id="star-default" class="far fa-star"></i>
             </span>
         </div>
+        <div class="overview">
+            <span class="text-bold">Overview:</span>
+            {{details.overview}}
+        </div>
       </div>
 
       <div class="movie-img">
