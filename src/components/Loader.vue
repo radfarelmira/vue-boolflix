@@ -15,11 +15,11 @@ export default {
 @import '../style/variables.scss';
 
 .loader {
-  border: 16px solid #f3f3f3;
+  border: 8px solid #f3f3f3;
   border-radius: 50%;
-  border-top: 16px solid #3498db;
-  width: 120px;
-  height: 120px;
+  border-top: 8px solid #3498db;
+  width: 60px;
+  height: 60px;
   animation: spin 2s linear infinite;
 }
 
