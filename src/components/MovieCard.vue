@@ -1,5 +1,5 @@
 <template>
-  <div @mouseover="getCast" class="movie">
+  <div @mouseover="getApi" class="movie">
       <div class="movie-text">
         <div class="title">
             <span class="text-bold">Titolo:</span>
@@ -28,8 +28,15 @@
         </div>
         <div class="cast">
             <span class="text-bold">Cast:</span>
-            <span v-for="(name, index) in nameArray" :key="index">
-                {{name}}
+            <span v-for="cast in castArray" :key="cast.id">
+                {{cast.name}}
+            </span>
+        </div>
+
+        <div class="genre">
+            <span class="text-bold">Genre:</span>
+            <span v-for="genre in genreArray" :key="genre.id">
+                {{genre.name}}
             </span>
         </div>
         <div class="overview">
@@ -67,12 +74,16 @@ export default {
             starRatingMax: 5,
             availabelFlags: ['it', 'en', 'fr','es','de'],
             castArray: [],
-            nameArray: []
+            genreArray: []
         };
     },
     methods: {
         calcVoteRating: function (){
         return Math.round(this.details.vote_average / 2)
+        },
+        getApi: function (){
+            this.getCast();
+            this.getGenre()
         },
         getCast: function () {
             axios.get(`https://api.themoviedb.org/3/${this.type}/${this.details.id}/credits`, {
@@ -82,14 +93,20 @@ export default {
             })
             .then((response) => {
                 this.castArray = response.data.cast
+
+                this.castArray.splice(5)
+
             });
+        },
+        getGenre: function () {
+            axios.get(`https://api.themoviedb.org/3/${this.type}/${this.details.id}`, {
+                params: {
+                    api_key: 'dc389c48e11b10c26a06091250059cac'
+                }
+            })
+            .then((response) => {
+                this.genreArray = response.data.genres
 
-            this.castArray.forEach(element => {
-                this.nameArray.push(element.name);
-
-                this.nameArray.splice(5)
-
-                console.log(this.nameArray)
             });
         }
     },
