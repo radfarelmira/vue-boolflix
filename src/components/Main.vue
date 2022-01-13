@@ -12,7 +12,7 @@
                     <MovieCard v-for="movie in moviesList" :key="movie.id" :details="movie"/>
                 </template>
                 <template v-else>
-                    Nessun risultato corrispondente alla ricerca, prova con una nuova ricerca
+                    No risults for this search, try another search
                 </template>
             </div>
             <Loader v-else/>

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header @searchClicked="search"/>
-    <Main :moviesList="moviesArray" :tvShowsList="tvShowArray" :isLoadingApi="isLoading" :userSearchText="queryValue" :IsLoading="isLoadingApi"/>
+    <Main :moviesList="moviesArray" :tvShowsList="tvShowArray" :isLoadingApi="isLoading" :userSearchText="queryValue" :isLoading="isLoadingApi"/>
   </div>
 </template>
 
@@ -32,6 +32,8 @@ export default {
       this.getTvShows()
     },
     getMovies: function (){
+      this.isLoadingApi= true;
+      
       axios.get('https://api.themoviedb.org/3/search/movie', {
         params: {
           api_key: this.apiKey,
@@ -45,6 +47,8 @@ export default {
       });
     },
     getTvShows: function (){
+      this.isLoadingApi= true;
+
       axios.get('https://api.themoviedb.org/3/search/tv', {
         params: {
           api_key: this.apiKey,

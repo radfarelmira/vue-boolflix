@@ -28,7 +28,7 @@
         </div>
         <div class="overview">
             <span class="text-bold">Overview:</span>
-            {{details.overview}}
+            {{details.original_language}}
         </div>
       </div>
 
@@ -73,8 +73,8 @@ export default {
 .movie{
     color: whitesmoke;
     margin-bottom: 20px;
-    min-height: 400px;
-    min-width: 200px;
+    min-height: 450px;
+    width: 342px;
 
     .movie-text{
         width: 100%;
