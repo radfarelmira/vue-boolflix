@@ -9,7 +9,7 @@
             <h2>Movies</h2>
             <div v-if="!isLoading" class="row row-cols-1 row-cols-lg-4">
                 <template v-if="moviesList.length > 0">
-                    <MovieCard v-for="movie in moviesList" :key="movie.id" :details="movie"/>
+                    <MovieCard v-for="movie in moviesList" :key="movie.id" :details="movie" type="movie"/>
                 </template>
                 <template v-else>
                     No risults for this search, try another search
@@ -20,7 +20,7 @@
             <h2>Tv shows</h2>
             <div v-if="!isLoading" class="row row-cols-1 row-cols-lg-4">
                 <template v-if="tvShowsList.length > 0">
-                    <MovieCard v-for="show in tvShowsList" :key="show.id" :details="show"/>
+                    <MovieCard v-for="show in tvShowsList" :key="show.id" :details="show" type="tv"/>
                 </template>
                 <template v-else>
                     No risults for this search, try another search

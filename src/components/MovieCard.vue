@@ -1,5 +1,5 @@
 <template>
-  <div class="movie">
+  <div @mouseover="getCast" class="movie">
       <div class="movie-text">
         <div class="title">
             <span class="text-bold">Titolo:</span>
@@ -26,9 +26,15 @@
                 <i v-for="n in (starRatingMax - calcVoteRating())" :key="n" id="star-default" class="far fa-star"></i>
             </span>
         </div>
+        <div class="cast">
+            <span class="text-bold">Cast:</span>
+            <span v-for="(name, index) in nameArray" :key="index">
+                {{name}}
+            </span>
+        </div>
         <div class="overview">
             <span class="text-bold">Overview:</span>
-            {{details.original_language}}
+            {{details.overview}}
         </div>
       </div>
 
@@ -47,23 +53,46 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
     name: 'MovieCard',
     props: {
         details: Object,
+        type: String
     },
     data: function (){
         return {
             voteRating: '',
             starRatingMax: 5,
-            availabelFlags: ['it', 'en', 'fr','es','de']
+            availabelFlags: ['it', 'en', 'fr','es','de'],
+            castArray: [],
+            nameArray: []
         };
     },
     methods: {
         calcVoteRating: function (){
         return Math.round(this.details.vote_average / 2)
+        },
+        getCast: function () {
+            axios.get(`https://api.themoviedb.org/3/${this.type}/${this.details.id}/credits`, {
+                params: {
+                    api_key: 'dc389c48e11b10c26a06091250059cac'
+                }
+            })
+            .then((response) => {
+                this.castArray = response.data.cast
+            });
+
+            this.castArray.forEach(element => {
+                this.nameArray.push(element.name);
+
+                this.nameArray.splice(5)
+
+                console.log(this.nameArray)
+            });
         }
-    }
+    },
 }
 </script>
 
