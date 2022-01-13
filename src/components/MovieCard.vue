@@ -11,20 +11,33 @@
         </div>
         <div class="language">
             <span class="text-bold">lingua:</span>
-            {{details.original_language}}
-            <img :src="require(`../assets/${details.original_language}.png`)" :alt="details.original_language">   
+            <span v-if="availabelFlags.includes(details.original_language)">
+                <img class="flag" :src="require(`../assets/${details.original_language}.png`)" :alt="details.original_language">
+            </span>
+            <span v-else>
+                {{details.original_language}}
+            </span>
+               
         </div>
         <div class="vote">
             <span class="text-bold">Voto:</span>
-            {{calcVoteRating()}}
-            <i v-for="n in calcVoteRating()" :key="n" id="star-rating" class="fas fa-star"></i>
-            <i v-for="n in (starRatingMax - calcVoteRating())" :key="n" id="star-default" class="far fa-star"></i>
-            
+            <span class="vote-rating">
+                <i v-for="n in calcVoteRating()" :key="n" id="star-rating" class="fas fa-star"></i>
+                <i v-for="n in (starRatingMax - calcVoteRating())" :key="n" id="star-default" class="far fa-star"></i>
+            </span>
         </div>
       </div>
 
       <div class="movie-img">
-        <img :src="`https://image.tmdb.org/t/p/w342/${details.poster_path}`" :alt="details.original_title? details.original_title: details.orginale_name">
+          <template v-if="details.poster_path != null">
+            <img :src="`https://image.tmdb.org/t/p/w342/${details.poster_path}`" :alt="details.original_title? details.original_title: details.orginale_name">
+          </template>
+          <template v-else>
+              <div class="text-bold not-find-img">
+                {{details.title? details.title: details.name}}
+              </div>
+          </template>
+        
       </div>
   </div>
 </template>
@@ -39,11 +52,12 @@ export default {
         return {
             voteRating: '',
             starRatingMax: 5,
+            availabelFlags: ['it', 'en', 'fr','es','de']
         };
     },
     methods: {
         calcVoteRating: function (){
-        return  this.voteRating = Math.round(this.details.vote_average / 2)
+        return Math.round(this.details.vote_average / 2)
         }
     }
 }
@@ -68,16 +82,22 @@ export default {
 
         .language{
 
-            img{
+            .flag{
                 width: 20px;
+                margin-left: 5px;
             }
         }
          
         .vote{
 
-            #star-rating{
+            .vote-rating{
+                margin-left: 5px;
+
+                #star-rating {
                 color: yellow;
+                }
             }
+
         }
     }
 
@@ -88,6 +108,14 @@ export default {
     .movie-img{
         border: 1px solid whitesmoke;
         height: 100%;
+        background-image: url(../assets/bg.png);
+        
+
+        .not-find-img{
+            margin: 10px;
+            font-size: 20px;
+            text-align: center;
+        }
     }
 
     &:hover .movie-img{

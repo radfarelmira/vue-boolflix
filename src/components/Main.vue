@@ -7,24 +7,27 @@
         
         <div :class="[userSearchText.length > 0? 'active' : 'disactive']">
             <h2>Movies</h2>
-            <div class="row row-cols-2 row-cols-lg-4">
+            <div v-if="!isLoading" class="row row-cols-1 row-cols-lg-4">
                 <template v-if="moviesList.length > 0">
-                    <MovieCard v-for="(movie, index) in moviesList" :key="index" :details="movie"/>
+                    <MovieCard v-for="movie in moviesList" :key="movie.id" :details="movie"/>
                 </template>
                 <template v-else>
                     Nessun risultato corrispondente alla ricerca, prova con una nuova ricerca
                 </template>
             </div>
+            <Loader v-else/>
             
             <h2>Tv shows</h2>
-            <div class="row row-cols-2 row-cols-lg-4">
+            <div v-if="!isLoading" class="row row-cols-1 row-cols-lg-4">
                 <template v-if="tvShowsList.length > 0">
-                    <MovieCard v-for="(show, index) in tvShowsList" :key="index" :details="show"/>
+                    <MovieCard v-for="show in tvShowsList" :key="show.id" :details="show"/>
                 </template>
                 <template v-else>
-                    Nessun risultato corrispondente alla ricerca, prova con una nuova ricerca
+                    No risults for this search, try another search
                 </template>
             </div>
+            <Loader v-else/>
+
         </div>
       </div>
   </main>
@@ -32,16 +35,20 @@
 
 <script>
 import MovieCard from "./MovieCard";
+import Loader from "./Loader";
+
 
 export default {
     name: 'Main',
     props:{
         moviesList: Array,
         tvShowsList: Array,
-        userSearchText: String
+        userSearchText: String,
+        isLoading: Boolean
     },
     components: {
         MovieCard,
+        Loader
     }
 }
 </script>

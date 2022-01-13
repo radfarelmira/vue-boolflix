@@ -38,6 +38,7 @@ header{
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
             height: 100%;
             
             h2{
@@ -47,7 +48,7 @@ header{
             }
 
             input{
-                width: 300px;
+                max-width: 300px;
                 margin-right: 10px;
                 height: 30px;
                 padding: 10px;

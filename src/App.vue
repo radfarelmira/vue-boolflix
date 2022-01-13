@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header @searchClicked="search"/>
-    <Main :moviesList="moviesArray" :tvShowsList="tvShowArray" :isLoadingApi="isLoading" :userSearchText="queryValue"/>
+    <Main :moviesList="moviesArray" :tvShowsList="tvShowArray" :isLoadingApi="isLoading" :userSearchText="queryValue" :IsLoading="isLoadingApi"/>
   </div>
 </template>
 
@@ -21,7 +21,8 @@ export default {
       queryValue:'',
       apiKey: 'dc389c48e11b10c26a06091250059cac',
       moviesArray: [],
-      tvShowArray: []
+      tvShowArray: [],
+      isLoadingApi: true,
     };
   },
   methods: {
@@ -39,6 +40,8 @@ export default {
       })
       .then((response) => {
         this.moviesArray = response.data.results;
+
+        this.isLoadingApi= false;
       });
     },
     getTvShows: function (){
@@ -50,6 +53,8 @@ export default {
       })
       .then((response) => {
         this.tvShowArray = response.data.results;
+
+        this.isLoadingApi= false;
       });
     }
   },
