@@ -22,14 +22,14 @@
         <div class="vote">
             <span class="text-bold">Voto:</span>
             <span class="vote-rating">
-                <i v-for="n in calcVoteRating()" :key="n" id="star-rating" class="fas fa-star"></i>
-                <i v-for="n in (starRatingMax - calcVoteRating())" :key="n" id="star-default" class="far fa-star"></i>
+                <i v-for="n in starRating" :key="n" id="star-rating" class="fas fa-star"></i>
+                <i v-for="n in (starRatingMax - starRating)" :key="n" id="star-default" class="far fa-star"></i>
             </span>
         </div>
         <div class="cast">
             <span class="text-bold">Cast:</span>
             <span v-for="cast in castArray" :key="cast.id">
-                {{cast.name}}
+                {{cast.name}}   
             </span>
         </div>
 
@@ -71,19 +71,21 @@ export default {
     data: function (){
         return {
             voteRating: '',
-            starRatingMax: 5,
             availabelFlags: ['it', 'en', 'fr','es','de'],
             castArray: [],
-            genreArray: []
+            genreArray: [],
+            starRatingMax: 5,
+            starRating: 0
         };
     },
     methods: {
         calcVoteRating: function (){
-        return Math.round(this.details.vote_average / 2)
+           return this.starRating = Math.round(this.details.vote_average / 2)
         },
         getApi: function (){
             this.getCast();
             this.getGenre()
+            this.calcVoteRating()
         },
         getCast: function () {
             axios.get(`https://api.themoviedb.org/3/${this.type}/${this.details.id}/credits`, {
